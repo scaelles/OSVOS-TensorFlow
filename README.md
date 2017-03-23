@@ -9,9 +9,9 @@ This TensorFlow code is a posteriori implmentation of OSVOS. The results publish
 Code comming soon!
 
 ### Citation:
-@inproceedings{Caelles2017,
-  author = {S. Caelles and K.-K. Maninis and J. Pont-Tuset and L. Leal-Taix\'e and D. Cremers and L. {Van Gool},
-  title = {One-Shot Video Object Segmentation},
-  booktitle = {Computer Vision and Pattern Recognition (CVPR)},
-  year = {2017}
-}
+    @Inproceedings{Caelles2017,
+      author = {S. Caelles and K.-K. Maninis and J. Pont-Tuset and L. Leal-Taix\'e and D. Cremers and L. {Van Gool},
+      title = {One-Shot Video Object Segmentation},
+      booktitle = {Computer Vision and Pattern Recognition (CVPR)},
+      year = {2017}
+    }
