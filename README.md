@@ -6,7 +6,7 @@ OSVOS is a method that tackles the task of semi-supervised video object segmenta
 
 
 
-This TensorFlow code is a posteriori implmentation of OSVOS. The results published in the paper were obtained using the Caffe version that can be found at [OSVOS-caffe](https://github.com/kmaninis/OSVOS-caffe).
+This TensorFlow code is a posteriori implementation of OSVOS. The results published in the paper were obtained using the Caffe version that can be found at [OSVOS-caffe](https://github.com/kmaninis/OSVOS-caffe).
 
 
 
