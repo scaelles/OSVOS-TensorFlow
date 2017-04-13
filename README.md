@@ -16,7 +16,7 @@ This TensorFlow code is a posteriori implementation of OSVOS and it does not con
 2. Install if necessary the required dependencies:
    
    - Python 2.7 
-   - Tensorflow r1.0 or higher (pip install tensorflow-gpu) along with standard [dependencies](https://www.tensorflow.org/install/install_linux)
+   - Tensorflow r1.0 or higher (`pip install tensorflow-gpu`) along with standard [dependencies](https://www.tensorflow.org/install/install_linux)
    - Other python dependencies: PIL (Pillow version), numpy, scipy, matplotlib
    
 3. Download the parent model from [here](https://data.vision.ee.ethz.ch/csergi/share/OSVOS/OSVOS_parent_model.zip) (55 MB) and unzip it under `models/` (It should create a folder named 'OSVOS_parent').
