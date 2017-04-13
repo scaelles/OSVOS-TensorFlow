@@ -1,14 +1,34 @@
-# OSVOS: One-Shot Video Object Segmentation (Code coming soon!)
+# OSVOS: One-Shot Video Object Segmentation
 Check our [project page](http://www.vision.ee.ethz.ch/~cvlsegmentation/osvos) for additional information.
 ![OSVOS](doc/ims/osvos.png)
 
 OSVOS is a method that tackles the task of semi-supervised video object segmentation. It is based on a fully-convolutional neural network architecture that is able to successively transfer generic semantic information, learned on ImageNet, to the task of foreground segmentation, and finally to learning the appearance of a single annotated object of the test sequence (hence one-shot). Experiments on DAVIS show that OSVOS is faster than currently available techniques and improves the state of the art by a significant margin (79.8% vs 68.0%).
 
 
+This TensorFlow code is a posteriori implementation of OSVOS and it does not contain the boundary snapping branch. The results published in the paper were obtained using the Caffe version that can be found at [OSVOS-caffe](https://github.com/kmaninis/OSVOS-caffe).
 
-This TensorFlow code is a posteriori implementation of OSVOS. The results published in the paper were obtained using the Caffe version that can be found at [OSVOS-caffe](https://github.com/kmaninis/OSVOS-caffe).
 
+### Installation:
+1. Clone the OSVOS-TensorFlow repository
+   ```Shell
+   git clone https://github.com/kmaninis/OSVOS-TensorFlow.git
+   ```
+2. Install if necessary the required dependencies:
+   ```
+   Python 2.7 
+   Tensorflow r1.0 or higher (pip install tensorflow-gpu)
+   Other python dependencies: PIL (Pillow version), numpy, scipy, matplotlib
+   ```
+3. Download the parent model from [here](https://data.vision.ee.ethz.ch/csergi/share/OSVOS/OSVOS_parent_model.zip) (55 MB) and unzip it under `models/` (It should create a folder named 'OSVOS_parent').
 
+4. All the steps to re-train OSVOS are provided in this repository. In case you would like to test with the pre-trained models, you can download them from  [here](https://data.vision.ee.ethz.ch/csergi/share/OSVOS/OSVOS_pre-trained_models.zip) (2.2GB) and unzip them under `models/` (It should create a folder for every model).
+
+### Demo online training and testing
+1. Edit in file `osvos_demo.py` the 'User defined parameters' (eg. gpu_id, train_model, etc)
+
+2. Run `python osvos_demo.py`
+
+It is possible to work with all sequences of DAVIS just by creating a soft link (`ln -s /path/to/DAVIS/`) in the root folder of the project.
 
 ### Citation:
 	@Inproceedings{Cae+17,
