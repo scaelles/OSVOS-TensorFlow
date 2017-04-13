@@ -14,11 +14,11 @@ This TensorFlow code is a posteriori implementation of OSVOS and it does not con
    git clone https://github.com/kmaninis/OSVOS-TensorFlow.git
    ```
 2. Install if necessary the required dependencies:
-   ```
-   Python 2.7 
-   Tensorflow r1.0 or higher (pip install tensorflow-gpu)
-   Other python dependencies: PIL (Pillow version), numpy, scipy, matplotlib
-   ```
+   
+   - Python 2.7 
+   - Tensorflow r1.0 or higher (pip install tensorflow-gpu) along with standard [dependencies](https://www.tensorflow.org/install/install_linux)
+   - Other python dependencies: PIL (Pillow version), numpy, scipy, matplotlib
+   
 3. Download the parent model from [here](https://data.vision.ee.ethz.ch/csergi/share/OSVOS/OSVOS_parent_model.zip) (55 MB) and unzip it under `models/` (It should create a folder named 'OSVOS_parent').
 
 4. All the steps to re-train OSVOS are provided in this repository. In case you would like to test with the pre-trained models, you can download them from  [here](https://data.vision.ee.ethz.ch/csergi/share/OSVOS/OSVOS_pre-trained_models.zip) (2.2GB) and unzip them under `models/` (It should create a folder for every model).
