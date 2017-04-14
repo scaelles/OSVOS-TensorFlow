@@ -325,11 +325,11 @@ def load_caffe_weights(weights_path):
 
 
 def parameter_lr():
-    """Specify the learning rate for every parameter
+    """Specify the relative learning rate for every parameter. The final learning rate
+    in every parameter will be the one defined here multiplied by the global one
     Args:
-
     Returns:
-    Dictionary with the learning rate for every parameter
+    Dictionary with the relative learning rate for every parameter
     """
 
     vars_corresp = dict()
