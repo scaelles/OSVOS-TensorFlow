@@ -24,11 +24,21 @@ This TensorFlow code is a posteriori implementation of OSVOS and it does not con
 4. All the steps to re-train OSVOS are provided in this repository. In case you would like to test with the pre-trained models, you can download them from  [here](https://data.vision.ee.ethz.ch/csergi/share/OSVOS/OSVOS_pre-trained_models.zip) (2.2GB) and unzip them under `models/` (It should create a folder for every model).
 
 ### Demo online training and testing
-1. Edit in file `osvos_demo.py` the 'User defined parameters' (eg. gpu_id, train_model, etc)
+1. Edit in file `osvos_demo.py` the 'User defined parameters' (eg. gpu_id, train_model, etc).
 
-2. Run `python osvos_demo.py`
+2. Run `python osvos_demo.py`.
 
-It is possible to work with all sequences of DAVIS just by creating a soft link (`ln -s /path/to/DAVIS/`) in the root folder of the project.
+It is possible to work with all sequences of DAVIS just by creating a soft link (`ln -s /path/to/DAVIS/  DAVIS`) in the root folder of the project.
+
+### Training the parent network (optional)
+1. All the traning sequences of DAVIS are required to train the parent model, thus download it from [here](https://graphics.ethz.ch/Downloads/Data/Davis/DAVIS-data.zip) if you don't have it. 
+2. Place the dataset in this repository or create a soft link to it (`ln -s /path/to/DAVIS/ DAVIS`) if you have it somewhere else.
+3. Download the VGG 16 model trained on Imagenet from the TF model zoo from [here](http://download.tensorflow.org/models/vgg_16_2016_08_28.tar.gz).
+4. Place the vgg_16.ckpt file inside `models/`.
+5. Edit in the file the 'User defined parameters' (eg. gpu_id).
+6. Run `python osvos_parent_demo.py` (it make take up to 36 hours to train!).
+
+Have a happy training!
 
 ### Citation:
 	@Inproceedings{Cae+17,
