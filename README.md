@@ -35,8 +35,8 @@ It is possible to work with all sequences of DAVIS just by creating a soft link 
 2. Place the dataset in this repository or create a soft link to it (`ln -s /path/to/DAVIS/ DAVIS`) if you have it somewhere else.
 3. Download the VGG 16 model trained on Imagenet from the TF model zoo from [here](http://download.tensorflow.org/models/vgg_16_2016_08_28.tar.gz).
 4. Place the vgg_16.ckpt file inside `models/`.
-5. Edit in the file the 'User defined parameters' (eg. gpu_id).
-6. Run `python osvos_parent_demo.py` (it make take up to 36 hours to train!).
+5. Edit the 'User defined parameters' (eg. gpu_id) in file `osvos_parent_demo.py`.
+6. Run `python osvos_parent_demo.py`. This step takes up to 36 hours to train, and ~15GB for loading data and online data augmentation. Change dataset.py accordingly, to adjust to a less momory-intensive setup.
 
 Have a happy training!
 
