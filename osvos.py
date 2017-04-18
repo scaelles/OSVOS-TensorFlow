@@ -160,6 +160,7 @@ def interp_surgery(variables):
     return interp_tensors
 
 
+# TO DO: Move preprocessing into Tensorflow
 def preprocess_img(image):
     """Preprocess the image to adapt it to network requirements
     Args:
@@ -171,10 +172,13 @@ def preprocess_img(image):
         image = np.array(Image.open(image), dtype=np.uint8)
     in_ = image[:, :, ::-1]
     in_ = np.subtract(in_, np.array((104.00699, 116.66877, 122.67892), dtype=np.float32))
+    # in_ = tf.subtract(tf.cast(in_, tf.float32), np.array((104.00699, 116.66877, 122.67892), dtype=np.float32))
     in_ = np.expand_dims(in_, axis=0)
+    # in_ = tf.expand_dims(in_, 0)
     return in_
 
 
+# TO DO: Move preprocessing into Tensorflow
 def preprocess_labels(label):
     """Preprocess the labels to adapt them to the loss computation requirements
     Args:
@@ -183,10 +187,14 @@ def preprocess_labels(label):
     Label ready to compute the loss (1,W,H,1)
     """
     if type(label) is not np.ndarray:
-        label = np.array(Image.open(label), dtype=np.uint8)
+        label = np.array(Image.open(label).split()[0], dtype=np.uint8)
     max_mask = np.max(label) * 0.5
     label = np.greater(label, max_mask)
     label = np.expand_dims(np.expand_dims(label, axis=0), axis=3)
+    # label = tf.cast(np.array(label), tf.float32)
+    # max_mask = tf.multiply(tf.reduce_max(label), 0.5)
+    # label = tf.cast(tf.greater(label, max_mask), tf.float32)
+    # label = tf.expand_dims(tf.expand_dims(label, 0), 3)
     return label
 
 

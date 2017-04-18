@@ -53,8 +53,9 @@ class Dataset:
         for idx, line in enumerate(train_paths):
             if store_memory:
                 img = Image.open(os.path.join(database_root, str(line.split()[0])))
-                label = Image.open(os.path.join(database_root, str(line.split()[1])))
+                label = Image.open(os.path.join(database_root, str(line.split()[1]))).split()[0]
                 if data_aug:
+                    if idx == 0: sys.stdout.write('Performing the data augmentation')
                     for scale in data_aug_scales:
                         img_size = tuple([int(img.size[0] * scale), int(img.size[1] * scale)])
                         img_sc = img.resize(img_size)
@@ -67,12 +68,14 @@ class Dataset:
                             self.images_train.append(np.array(img_sc_fl, dtype=np.uint8))
                             self.labels_train.append(np.array(label_sc_fl, dtype=np.uint8))
                 else:
+                    if idx == 0: sys.stdout.write('Loading the data')
                     self.images_train.append(np.array(img, dtype=np.uint8))
                     self.labels_train.append(np.array(label, dtype=np.uint8))
-                if (idx + 1) % 1000 == 0:
-                    print('Loaded ' + str(idx) + ' train images')
+                if (idx + 1) % 50 == 0:
+                    sys.stdout.write('.')
             self.images_train_path.append(os.path.join(database_root, str(line.split()[0])))
             self.labels_train_path.append(os.path.join(database_root, str(line.split()[1])))
+        sys.stdout.write('\n')
         self.images_train_path = np.array(self.images_train_path)
         self.labels_train_path = np.array(self.labels_train_path)
 
