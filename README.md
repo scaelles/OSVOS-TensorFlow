@@ -47,3 +47,4 @@ Have a happy training!
 	  Booktitle      = {Computer Vision and Pattern Recognition (CVPR)},
 	  Year           = {2017}
 	}
+If you encounter any problems with the code, want to report bugs, etc. please contact me at scaelles[at]vision[dot]ee[dot]ethz[dot]ch.
