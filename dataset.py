@@ -53,7 +53,10 @@ class Dataset:
         for idx, line in enumerate(train_paths):
             if store_memory:
                 img = Image.open(os.path.join(database_root, str(line.split()[0])))
-                label = Image.open(os.path.join(database_root, str(line.split()[1]))).split()[0]
+                img.load()
+                label = Image.open(os.path.join(database_root, str(line.split()[1])))
+                label.load()
+                label = label.split()[0]
                 if data_aug:
                     if idx == 0: sys.stdout.write('Performing the data augmentation')
                     for scale in data_aug_scales:
