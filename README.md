@@ -31,7 +31,7 @@ This TensorFlow code is a posteriori implementation of OSVOS and it does not con
 It is possible to work with all sequences of DAVIS 2016 just by creating a soft link (`ln -s /path/to/DAVIS/  DAVIS`) in the root folder of the project.
 
 ### Training the parent network (optional)
-1. All the traning sequences of DAVIS 2016 are required to train the parent model, thus download it from [here](https://graphics.ethz.ch/Downloads/Data/Davis/DAVIS-data.zip) if you don't have it. 
+1. All the training sequences of DAVIS 2016 are required to train the parent model, thus download it from [here](https://graphics.ethz.ch/Downloads/Data/Davis/DAVIS-data.zip) if you don't have it. 
 2. Place the dataset in this repository or create a soft link to it (`ln -s /path/to/DAVIS/ DAVIS`) if you have it somewhere else.
 3. Download the VGG 16 model trained on Imagenet from the TF model zoo from [here](http://download.tensorflow.org/models/vgg_16_2016_08_28.tar.gz).
 4. Place the vgg_16.ckpt file inside `models/`.
