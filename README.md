@@ -11,7 +11,7 @@ This TensorFlow code is a posteriori implementation of OSVOS and it does not con
 ### Installation:
 1. Clone the OSVOS-TensorFlow repository
    ```Shell
-   git clone https://github.com/kmaninis/OSVOS-TensorFlow.git
+   git clone https://github.com/scaelles/OSVOS-TensorFlow.git
    ```
 2. Install if necessary the required dependencies:
    
