@@ -7,6 +7,7 @@ OSVOS is a method that tackles the task of semi-supervised video object segmenta
 
 This TensorFlow code is a posteriori implementation of OSVOS and it does not contain the boundary snapping branch. The results published in the paper were obtained using the Caffe version that can be found at [OSVOS-caffe](https://github.com/kmaninis/OSVOS-caffe).
 
+#### NEW: PyTorch implementation also available: [OSVOS-PyTorch](https://github.com/kmaninis/OSVOS-PyTorch)!
 
 ### Installation:
 1. Clone the OSVOS-TensorFlow repository
