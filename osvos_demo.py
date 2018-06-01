@@ -1,3 +1,4 @@
+from __future__ import print_function
 """
 Sergi Caelles (scaelles@vision.ee.ethz.ch)
 
