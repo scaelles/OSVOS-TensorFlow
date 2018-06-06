@@ -1,3 +1,4 @@
+from __future__ import print_function
 """
 Sergi Caelles (scaelles@vision.ee.ethz.ch)
 
@@ -69,7 +70,7 @@ for img_p in test_frames:
     frame_num = img_p.split('.')[0]
     img = np.array(Image.open(os.path.join('DAVIS', 'JPEGImages', '480p', seq_name, img_p)))
     mask = np.array(Image.open(os.path.join(result_path, frame_num+'.png')))
-    mask = mask/np.max(mask)
+    mask = mask//np.max(mask)
     im_over = np.ndarray(img.shape)
     im_over[:, :, 0] = (1 - mask) * img[:, :, 0] + mask * (overlay_color[0]*transparency + (1-transparency)*img[:, :, 0])
     im_over[:, :, 1] = (1 - mask) * img[:, :, 1] + mask * (overlay_color[1]*transparency + (1-transparency)*img[:, :, 1])

@@ -1,3 +1,4 @@
+from __future__ import print_function
 """
 Sergi Caelles (scaelles@vision.ee.ethz.ch)
 
@@ -15,6 +16,7 @@ from datetime import datetime
 import os
 import scipy.misc
 from PIL import Image
+import six
 
 slim = tf.contrib.slim
 
@@ -149,11 +151,9 @@ def interp_surgery(variables):
             h, w, k, m = v.get_shape()
             tmp = np.zeros((m, k, h, w))
             if m != k:
-                print 'input + output channels need to be the same'
-                raise
+                raise ValueError('input + output channels need to be the same')
             if h != w:
-                print 'filters need to be square'
-                raise
+                raise ValueError('filters need to be square')
             up_filter = upsample_filt(int(h))
             tmp[range(m), range(k), :, :] = up_filter
             interp_tensors.append(tf.assign(v, tmp.transpose((2, 3, 1, 0)), validate_shape=True, use_locking=True))
@@ -479,14 +479,14 @@ def _train(dataset, initial_ckpt, supervison, learning_rate, logs_path, max_trai
         with tf.name_scope('apply_gradient'):
             layer_lr = parameter_lr()
             grad_accumulator_ops = []
-            for var_ind, grad_acc in grad_accumulator.iteritems():
+            for var_ind, grad_acc in six.iteritems(grad_accumulator):
                 var_name = str(grads_and_vars[var_ind][1].name).split(':')[0]
                 var_grad = grads_and_vars[var_ind][0]
                 grad_accumulator_ops.append(grad_acc.apply_grad(var_grad * layer_lr[var_name],
                                                                 local_step=global_step))
         with tf.name_scope('take_gradients'):
             mean_grads_and_vars = []
-            for var_ind, grad_acc in grad_accumulator.iteritems():
+            for var_ind, grad_acc in six.iteritems(grad_accumulator):
                 mean_grads_and_vars.append(
                     (grad_acc.take_grad(iter_mean_grad), grads_and_vars[var_ind][1]))
             apply_gradient_op = optimizer.apply_gradients(mean_grads_and_vars, global_step=global_step)
@@ -505,7 +505,7 @@ def _train(dataset, initial_ckpt, supervison, learning_rate, logs_path, max_trai
     # run_metadata = tf.RunMetadata() # Option in the session run_metadata=run_metadata
     # summary_writer.add_run_metadata(run_metadata, 'step%d' % i)
     with tf.Session(config=config) as sess:
-        print 'Init variable'
+        print('Init variable')
         sess.run(init)
 
         # op to write logs to Tensorboard
@@ -539,7 +539,7 @@ def _train(dataset, initial_ckpt, supervison, learning_rate, logs_path, max_trai
         sess.run(interp_surgery(tf.global_variables()))
         print('Weights initialized')
 
-        print 'Start training'
+        print('Start training')
         while step < max_training_iters + 1:
             # Average the gradient
             for _ in range(0, iter_mean_grad):
@@ -559,7 +559,7 @@ def _train(dataset, initial_ckpt, supervison, learning_rate, logs_path, max_trai
 
             # Display training status
             if step % display_step == 0:
-                print >> sys.stderr, "{} Iter {}: Training Loss = {:.4f}".format(datetime.now(), step, batch_loss)
+                print("{} Iter {}: Training Loss = {:.4f}".format(datetime.now(), step, batch_loss), file=sys.stderr)
 
             # Save a checkpoint
             if step % save_step == 0:
@@ -567,13 +567,13 @@ def _train(dataset, initial_ckpt, supervison, learning_rate, logs_path, max_trai
                     curr_output = sess.run(img_summary, feed_dict={input_image: preprocess_img(test_image_path)})
                     summary_writer.add_summary(curr_output, step)
                 save_path = saver.save(sess, model_name, global_step=global_step)
-                print "Model saved in file: %s" % save_path
+                print("Model saved in file: %s" % save_path)
 
             step += 1
 
         if (step - 1) % save_step != 0:
             save_path = saver.save(sess, model_name, global_step=global_step)
-            print "Model saved in file: %s" % save_path
+            print("Model saved in file: %s" % save_path)
 
         print('Finished training.')
 
@@ -648,7 +648,7 @@ def test(dataset, checkpoint_file, result_path, config=None):
             res = sess.run(probabilities, feed_dict={input_image: image})
             res_np = res.astype(np.float32)[0, :, :, 0] > 162.0/255.0
             scipy.misc.imsave(os.path.join(result_path, curr_frame), res_np.astype(np.float32))
-            print 'Saving ' + os.path.join(result_path, curr_frame)
+            print('Saving ' + os.path.join(result_path, curr_frame))
 
 
 
