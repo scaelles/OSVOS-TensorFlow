@@ -643,7 +643,8 @@ def test(dataset, checkpoint_file, result_path, config=None):
             os.makedirs(result_path)
         for frame in range(0, dataset.get_test_size()):
             img, curr_img = dataset.next_batch(batch_size, 'test')
-            curr_frame = curr_img[0].split('/')[-1].split('.')[0] + '.png'
+            curr_frame_orig_name = os.path.split(curr_img[0])[1]
+            curr_frame = os.path.splitext(curr_frame_orig_name)[0] + '.png'
             image = preprocess_img(img[0])
             res = sess.run(probabilities, feed_dict={input_image: image})
             res_np = res.astype(np.float32)[0, :, :, 0] > 162.0/255.0
